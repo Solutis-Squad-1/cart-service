@@ -23,7 +23,7 @@ public class Cart {
     private Long userId;
 
     @OneToMany(mappedBy = "cart")
-    private Set<OrderItem> cart = new HashSet<>();
+    private Set<OrderItem> items = new HashSet<>();
 
     /*@ManyToMany(fetch = FetchType.LAZY)
     private List<Product> products;**/
@@ -57,8 +57,8 @@ public class Cart {
         deleted = true;
         deletedAt = LocalDateTime.now();
     }
-/*
-    public void deleteProducts() {
-        products = null;
-    }*/
+    /*
+        public void deleteProducts() {
+            products = null;
+        }*/
 }

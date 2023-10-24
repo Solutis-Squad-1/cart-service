@@ -18,8 +18,10 @@ create table products (
 create table order_item (
     id bigint generated always as identity,
     product_id bigint not null,
-    cart_id boolean not null,
+    cart_id bigint not null,
     amount bigint,
 
-    primary key (id)
+    primary key (id),
+    foreign key (cart_id) references carts(id),
+    foreign key (product_id) references products(id)
 );

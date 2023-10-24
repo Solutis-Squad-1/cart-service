@@ -1,17 +1,11 @@
 package br.com.solutis.squad1.cartservice.service;
 
-import br.com.solutis.squad1.cartservice.dto.CartResponseDto;
 import br.com.solutis.squad1.cartservice.mapper.CartMapper;
-import br.com.solutis.squad1.cartservice.model.entity.Cart;
-import br.com.solutis.squad1.cartservice.model.entity.Product;
 import br.com.solutis.squad1.cartservice.model.repository.CartRepository;
+import br.com.solutis.squad1.cartservice.model.repository.Repository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @Transactional
@@ -20,17 +14,41 @@ public class CartService {
     private final CartRepository cartRepository;
     private final CartMapper mapper;
 
+//    public Page<CartResponseDto> findAll(Pageable pageable) {
+//       return cartRepository.
+//    }
 
-    public Page<CartResponseDto> findAll(Pageable pageable) {
-        return null;
-    }
-/*
-    public CartResponseDto findByUserIdWithProducts(Long id) {
-        // Função para recuperar o carrinho do banco de dados
-        Cart cart = cartRepository.findByUserId(id);
+   /*public CartResponseDto findById(Long id){
+        try {
+            Cart cart = cartRepository.findByIdAndDeletedIsFalse(id)
+                    .orElseThrow(() -> new EntityNotFoundException("Product not found"));
 
-        // Função para pegar todos os produtos do carrinho
-        List<Product> products = cartRepository.findProducts(cart);
+            return mapper.toResponseDto(product);
+        } catch (EntityNotFoundException e) {
+            throw e;
+        } catch (Exception e) {
+            throw e;
+        }
     }*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    public CartResponseDto findByUserIdWithProducts(Long id) {
+//        // Função para recuperar o carrinho do banco de dados
+//        Cart cart = cartRepository.findByUserId(id);
+//
+//        // Função para pegar todos os produtos do carrinho
+//        List<Product> products = cartRepository.findProducts(cart);
 
 }

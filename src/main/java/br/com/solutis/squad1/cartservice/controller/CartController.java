@@ -17,10 +17,10 @@ public class CartController {
 
     private CartService service;
 
-    @GetMapping
-    public Page<CartResponseDto> findAll(Pageable pageable) {
-        return service.findAll(pageable);
-    }
+//    @GetMapping
+//    public Page<CartResponseDto> findAll(Pageable pageable) {
+//        return service.findAll(pageable);
+//    }
 /*
     @GetMapping("/{userId}")
     public CartResponseDto findByUserId(@PathVariable Long userId) {
