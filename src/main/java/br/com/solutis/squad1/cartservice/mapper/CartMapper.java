@@ -1,6 +1,8 @@
 package br.com.solutis.squad1.cartservice.mapper;
 
-import br.com.solutis.squad1.cartservice.dto.CartResponseDto;
+import br.com.solutis.squad1.cartservice.dto.cart.CartPostDto;
+import br.com.solutis.squad1.cartservice.dto.cart.CartPutDto;
+import br.com.solutis.squad1.cartservice.dto.cart.CartResponseDto;
 import br.com.solutis.squad1.cartservice.model.entity.Cart;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -18,4 +20,9 @@ public interface CartMapper {
     @Mapping(target = "id", ignore = true)
     Set<CartResponseDto> toResponseDto(Set<Cart> carts);
 
+    @Mapping(target = "id", ignore = true)
+    Cart postDtoToEntity(CartPostDto cartPostDto);
+
+    @Mapping(target = "id", ignore = true)
+    Cart putDtoToEntity(CartPutDto cartPutDto);
 }

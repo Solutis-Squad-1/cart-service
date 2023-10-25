@@ -1,4 +1,4 @@
-package br.com.solutis.squad1.cartservice.dto;
+package br.com.solutis.squad1.cartservice.dto.cart;
 
 import br.com.solutis.squad1.cartservice.model.entity.Cart;
 

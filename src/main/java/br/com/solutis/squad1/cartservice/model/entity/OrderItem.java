@@ -18,6 +18,6 @@ public class OrderItem {
     @JoinColumn(name = "cart_id")
     private Cart cart;
 
-    private Integer amount;
+    private Integer quantity;
 
 }

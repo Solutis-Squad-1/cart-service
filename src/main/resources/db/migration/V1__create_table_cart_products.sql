@@ -19,7 +19,7 @@ create table order_item (
     id bigint generated always as identity,
     product_id bigint not null,
     cart_id bigint not null,
-    amount bigint,
+    quantity bigint,
 
     primary key (id),
     foreign key (cart_id) references carts(id),

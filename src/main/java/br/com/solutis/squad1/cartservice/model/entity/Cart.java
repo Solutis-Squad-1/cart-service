@@ -57,8 +57,10 @@ public class Cart {
         deleted = true;
         deletedAt = LocalDateTime.now();
     }
-    /*
-        public void deleteProducts() {
-            products = null;
-        }*/
+
+    public void update(Cart cart){
+        if (cart.getUserId() != null) setUserId(cart.getUserId());
+
+        if (cart.getItems() != null) setItems(cart.getItems());
+    }
 }
