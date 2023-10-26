@@ -34,7 +34,7 @@ public class CartController {
         return cartService.findById(id);
     }
 
-    @GetMapping("/cart/{userId}")
+    @GetMapping("/user/{userId}")
     public Page<ProductDetailsDto> findProductsByUserAndNotDeleted(
             @PathVariable Long userId
     ) {

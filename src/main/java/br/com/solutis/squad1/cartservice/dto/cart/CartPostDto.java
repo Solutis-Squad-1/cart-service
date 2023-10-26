@@ -10,5 +10,6 @@ public record CartPostDto(
         Long userId,
 
         @NotNull
-        List<Long> products) {
+        List<Long> productsIds
+) {
 }

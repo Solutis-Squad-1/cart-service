@@ -2,9 +2,7 @@ package br.com.solutis.squad1.cartservice.model.repository;
 
 import br.com.solutis.squad1.cartservice.model.entity.Cart;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.TypedQuery;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -33,18 +31,22 @@ public class CartRepository {
 
     public Cart findById(Long id) {
         String jpql = "SELECT c FROM Cart c WHERE c.deleted = false AND c.id = :id";
-        return em.createQuery(jpql, Cart.class).setParameter("id", id).getSingleResult();
+
+        return em.createQuery(jpql, Cart.class)
+                .setParameter("id", id)
+                .getSingleResult();
     }
 
     public List<Long> findProductsByUserAndNotDeleted(Long userId){
         String jpql = "SELECT oi.product.id FROM Cart c JOIN c.items oi WHERE c.userId = :userId AND c.deleted = false";
+
         return em.createQuery(jpql, Long.class)
                 .setParameter("userId", userId)
                 .getResultList();
     }
 
     public Map<Long, Integer> findProductsAndQuantityByUserId(Long userId){
-        String jpql = "SELECT oi.product.id, oi.product.quantity FROM Cart c JOIN c.items oi WHERE c.userId = :userId AND c.deleted = false";
+        String jpql = "SELECT oi.product.id, oi.quantity FROM Cart c JOIN c.items oi WHERE c.userId = :userId AND c.deleted = false";
 
         List<Object[]> results = em.createQuery(jpql, Object[].class)
                 .setParameter("userId", userId)

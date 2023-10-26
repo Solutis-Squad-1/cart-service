@@ -7,12 +7,13 @@ import br.com.solutis.squad1.cartservice.model.entity.Cart;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+import java.util.List;
 import java.util.Set;
 
 @Mapper(componentModel = "spring")
 public interface CartMapper {
 
-    CartResponseDto toResponseDto(Cart cart);
+    CartResponseDto toResponseDto(Cart cart, List<Long> products);
 
     @Mapping(target = "id", ignore = true)
     Cart responseDtoToEntity(CartResponseDto cartResponseDto);

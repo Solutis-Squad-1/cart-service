@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import java.util.List;
 
 public record CartPutDto(
-
         Long userId,
-        List<Long> products) {
+        List<Long> productsIds
+) {
 }
