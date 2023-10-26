@@ -10,7 +10,7 @@ create table carts (
 );
 
 create table products (
-    id bigint generated always as identity,
+    id bigint,
 
     primary key (id)
 );

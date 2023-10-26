@@ -1,5 +1,6 @@
 package br.com.solutis.squad1.cartservice.model.entity;
 
+import br.com.solutis.squad1.cartservice.dto.cart.CartPutDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,9 +26,6 @@ public class Cart {
     @OneToMany(mappedBy = "cart")
     private Set<OrderItem> items = new HashSet<>();
 
-    /*@ManyToMany(fetch = FetchType.LAZY)
-    private List<Product> products;**/
-
     @Column(nullable = false)
     private boolean deleted = false;
 
@@ -42,6 +40,12 @@ public class Cart {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
+
+    public Cart(Cart cart) {
+        this.id = cart.id;
+        this.userId = cart.userId;
+        this.deleted = cart.deleted;
+    }
 
     @PrePersist
     protected void onCreate() {
@@ -60,7 +64,5 @@ public class Cart {
 
     public void update(Cart cart){
         if (cart.getUserId() != null) setUserId(cart.getUserId());
-
-        if (cart.getItems() != null) setItems(cart.getItems());
     }
 }

@@ -1,9 +1,13 @@
 package br.com.solutis.squad1.cartservice.model.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "order_item")
+@Data
+@NoArgsConstructor
 public class OrderItem {
 
     @Id
@@ -20,4 +24,11 @@ public class OrderItem {
 
     private Integer quantity;
 
+    public OrderItem(Cart cart, Product product, int quantity) {
+        this.cart = cart;
+        this.product = product;
+        this.quantity = quantity;
+    }
+
+    
 }

@@ -10,7 +10,8 @@ public record CartResponseDto(
 
         Long userId,
 
-        List<Long> products) {
+        List<Long> productsIds
+) {
 
     public CartResponseDto(Cart cart, List<Long> products) {
         this(
