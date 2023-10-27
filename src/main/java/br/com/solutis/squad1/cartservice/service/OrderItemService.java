@@ -6,6 +6,7 @@ import br.com.solutis.squad1.cartservice.model.entity.Cart;
 import br.com.solutis.squad1.cartservice.model.entity.OrderItem;
 import br.com.solutis.squad1.cartservice.model.entity.Product;
 import br.com.solutis.squad1.cartservice.model.repository.OrderItemRepository;
+import br.com.solutis.squad1.cartservice.model.repository.OrderItemRepositoryCustom;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.NoResultException;
 import jakarta.transaction.Transactional;
@@ -21,12 +22,13 @@ import java.util.Set;
 @Transactional
 @RequiredArgsConstructor
 public class OrderItemService {
+    private final OrderItemRepositoryCustom orderItemRepositoryCustom;
     private final OrderItemRepository orderItemRepository;
     private final OrderItemMapper mapper;
 
     public void updateProducts(Cart cart, Set<Product> products) {
         for (Product product : products) {
-            OrderItem existingItem = orderItemRepository.findIdByCartAndProduct(cart, product);
+            OrderItem existingItem = orderItemRepositoryCustom.findIdByCartAndProduct(cart, product);
 
             if (existingItem != null) {
                 existingItem.setQuantity(existingItem.getQuantity() + 1);
@@ -46,7 +48,7 @@ public class OrderItemService {
 
     public OrderItemResponseDto findById(Long id) {
         try {
-            OrderItem orderItem = orderItemRepository.findById(id);
+            OrderItem orderItem = orderItemRepository.getReferenceById(id);
             return  mapper.toResponseDto(orderItem);
         } catch (NoResultException e){
             throw new EntityNotFoundException("Order item not found");
@@ -55,7 +57,7 @@ public class OrderItemService {
 
     public List<Long> findByCart(Cart cart){
         try {
-            return orderItemRepository.findByCart(cart);
+            return orderItemRepositoryCustom.findByCart(cart);
         } catch (NoResultException e){
             throw new EntityNotFoundException("Order item not found");
         }
