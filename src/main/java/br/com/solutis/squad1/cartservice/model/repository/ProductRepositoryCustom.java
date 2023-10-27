@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 @Repository
-public class ProductRepository {
+public class ProductRepositoryCustom {
 
     @PersistenceContext
     private EntityManager em;
