@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
@@ -43,6 +44,7 @@ public class CartController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
+    @PreAuthorize("hasAuthority('cart:create')")
     public CartResponseDto save(
             @RequestBody CartPostDto cartPostDto
     ){
@@ -50,6 +52,7 @@ public class CartController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('cart:update:status')")
     public CartResponseDto update(
             @PathVariable Long id,
             @RequestBody CartPutDto cartPutDto
@@ -59,6 +62,7 @@ public class CartController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PreAuthorize("hasAuthority('cart:delete')")
     public void delete(
             @PathVariable Long id
     ) {
