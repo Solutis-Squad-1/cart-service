@@ -26,6 +26,11 @@ public class OrderItemService {
     private final OrderItemRepository orderItemRepository;
     private final OrderItemMapper mapper;
 
+    /**
+     * Update products
+     * @param cart
+     * @param products
+     */
     public void updateProducts(Cart cart, Set<Product> products) {
         for (Product product : products) {
             OrderItem existingItem = orderItemRepositoryCustom.findIdByCartAndProduct(cart, product);
@@ -38,27 +43,42 @@ public class OrderItemService {
         }
     }
 
+    /**
+     * Find all order items
+     * @param pageable
+     * @return Page<OrderItemResponseDto>
+     */
     public Page<OrderItemResponseDto> findAll(Pageable pageable) {
-        try{
+        try {
             return orderItemRepository.findAll(pageable).map(mapper::toResponseDto);
-        } catch (Exception e){
+        } catch (Exception e) {
             throw e;
         }
     }
 
+    /**
+     * Find order item by id
+     * @param id
+     * @return OrderItemResponseDto
+     */
     public OrderItemResponseDto findById(Long id) {
         try {
             OrderItem orderItem = orderItemRepository.getReferenceById(id);
-            return  mapper.toResponseDto(orderItem);
-        } catch (NoResultException e){
+            return mapper.toResponseDto(orderItem);
+        } catch (NoResultException e) {
             throw new EntityNotFoundException("Order item not found");
         }
     }
 
-    public List<Long> findByCart(Cart cart){
+    /**
+     * Find order item by cart
+     * @param cart
+     * @return List<Long>
+     */
+    public List<Long> findByCart(Cart cart) {
         try {
             return orderItemRepositoryCustom.findByCart(cart);
-        } catch (NoResultException e){
+        } catch (NoResultException e) {
             throw new EntityNotFoundException("Order item not found");
         }
     }

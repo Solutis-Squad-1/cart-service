@@ -4,6 +4,9 @@ import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
+/**
+ * DTO for creating a cart.
+ */
 public record CartPostDto(
 
         @NotNull

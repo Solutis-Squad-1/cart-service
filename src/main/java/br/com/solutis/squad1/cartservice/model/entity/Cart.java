@@ -1,13 +1,12 @@
 package br.com.solutis.squad1.cartservice.model.entity;
 
-import br.com.solutis.squad1.cartservice.dto.cart.CartPutDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.time.LocalDateTime;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -62,7 +61,7 @@ public class Cart {
         deletedAt = LocalDateTime.now();
     }
 
-    public void update(Cart cart){
+    public void update(Cart cart) {
         if (cart.getUserId() != null) setUserId(cart.getUserId());
     }
 }

@@ -17,6 +17,10 @@ public class ProductService {
     private final ProductRepositoryCustom productRepository;
     private final ProductMapper mapper;
 
+    /**
+     * Find all products
+     * @return List<Product>
+     */
     public Set<Product> findAllById(List<Long> productsId) {
         try {
             return productRepository.findAllById(productsId);

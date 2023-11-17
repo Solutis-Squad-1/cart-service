@@ -6,9 +6,6 @@ import br.com.solutis.squad1.cartservice.model.entity.Product;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,7 +16,7 @@ public class OrderItemRepositoryCustom {
     @PersistenceContext
     private EntityManager em;
 
-    public OrderItem save(OrderItem orderItem){
+    public OrderItem save(OrderItem orderItem) {
         em.persist(orderItem);
         return em.find(OrderItem.class, orderItem.getId());
     }

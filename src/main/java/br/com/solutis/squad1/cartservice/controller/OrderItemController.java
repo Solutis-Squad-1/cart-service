@@ -1,6 +1,5 @@
 package br.com.solutis.squad1.cartservice.controller;
 
-import br.com.solutis.squad1.cartservice.dto.cart.CartResponseDto;
 import br.com.solutis.squad1.cartservice.dto.orderItem.OrderItemResponseDto;
 import br.com.solutis.squad1.cartservice.service.OrderItemService;
 import lombok.RequiredArgsConstructor;
@@ -17,17 +16,29 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrderItemController {
     private final OrderItemService orderItemService;
 
+    /**
+     * Find all orderItems.
+     *
+     * @param pageable
+     * @return Page<OrderItemResponseDto>
+     */
     @GetMapping
     public Page<OrderItemResponseDto> findAll(
             Pageable pageable
-    ){
+    ) {
         return orderItemService.findAll(pageable);
     }
 
+    /**
+     * Find orderItem by id.
+     *
+     * @param id
+     * @return OrderItemResponseDto
+     */
     @GetMapping("/{id}")
     public OrderItemResponseDto finById(
             @PathVariable Long id
-    ){
+    ) {
         return orderItemService.findById(id);
     }
 }

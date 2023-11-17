@@ -18,7 +18,7 @@ public class CartRepositoryCustom {
     @PersistenceContext
     private EntityManager em;
 
-    public Page<Cart> findAll(Pageable pageable){
+    public Page<Cart> findAll(Pageable pageable) {
         String jpql = "SELECT c FROM Cart c WHERE c.deleted = false";
 
         List<Cart> resultList = em.createQuery(jpql, Cart.class)
@@ -37,7 +37,7 @@ public class CartRepositoryCustom {
                 .getSingleResult();
     }
 
-    public List<Long> findProductsByUserAndNotDeleted(Long userId){
+    public List<Long> findProductsByUserAndNotDeleted(Long userId) {
         String jpql = "SELECT oi.product.id FROM Cart c JOIN c.items oi WHERE c.userId = :userId AND c.deleted = false";
 
         return em.createQuery(jpql, Long.class)
@@ -45,7 +45,7 @@ public class CartRepositoryCustom {
                 .getResultList();
     }
 
-    public Map<Long, Integer> findProductsAndQuantityByUserId(Long userId){
+    public Map<Long, Integer> findProductsAndQuantityByUserId(Long userId) {
         String jpql = "SELECT oi.product.id, oi.quantity FROM Cart c JOIN c.items oi WHERE c.userId = :userId AND c.deleted = false";
 
         List<Object[]> results = em.createQuery(jpql, Object[].class)

@@ -4,6 +4,9 @@ import br.com.solutis.squad1.cartservice.model.entity.Cart;
 
 import java.util.List;
 
+/**
+ * DTO for returning a cart.
+ */
 public record CartResponseDto(
 
         Long id,

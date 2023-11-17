@@ -7,6 +7,9 @@ import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.List;
 
+/**
+ * DTO for getting a product.
+ */
 public record ProductResponseDto(
         @NotNull
         Long id,

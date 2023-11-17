@@ -12,8 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Set;
-
 @RestController
 @RequestMapping("/api/v1/carts")
 @RequiredArgsConstructor
@@ -21,20 +19,38 @@ public class CartController {
 
     private final CartService cartService;
 
+    /**
+     * Find all carts.
+     *
+     * @param pageable
+     * @return Page<CartResponseDto>
+     */
     @GetMapping
     public Page<CartResponseDto> findAll(
             Pageable pageable
-    ){
+    ) {
         return cartService.findAll(pageable);
     }
 
+    /**
+     * Find cart by id.
+     *
+     * @param id
+     * @return CartResponseDto
+     */
     @GetMapping("/{id}")
     public CartResponseDto finById(
             @PathVariable Long id
-    ){
+    ) {
         return cartService.findById(id);
     }
 
+    /**
+     * Find products by user id
+     *
+     * @param userId
+     * @return Page<ProductDetailsDto>
+     */
     @GetMapping("/user/{userId}")
     public Page<ProductDetailsDto> findProductsByUserAndNotDeleted(
             @PathVariable Long userId
@@ -42,24 +58,42 @@ public class CartController {
         return cartService.findProductsByUserAndNotDeleted(userId);
     }
 
+    /**
+     * Create a cart.
+     *
+     * @param cartPostDto
+     * @return CartResponseDto
+     */
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @PreAuthorize("hasAuthority('cart:create')")
     public CartResponseDto save(
             @RequestBody CartPostDto cartPostDto
-    ){
+    ) {
         return cartService.save(cartPostDto);
     }
 
+    /**
+     * Update a cart.
+     *
+     * @param id
+     * @param cartPutDto
+     * @return CartResponseDto
+     */
     @PutMapping("/{id}")
     @PreAuthorize("hasAuthority('cart:update:status')")
     public CartResponseDto update(
             @PathVariable Long id,
             @RequestBody CartPutDto cartPutDto
-    ){
+    ) {
         return cartService.update(id, cartPutDto);
     }
 
+    /**
+     * Delete a cart.
+     *
+     * @param id
+     */
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PreAuthorize("hasAuthority('cart:delete')")
