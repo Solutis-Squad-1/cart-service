@@ -6,6 +6,7 @@ import br.com.solutis.squad1.cartservice.dto.product.CategoryResponseDto;
 import br.com.solutis.squad1.cartservice.dto.product.ImageResponseDto;
 import br.com.solutis.squad1.cartservice.dto.product.ProductResponseDto;
 import br.com.solutis.squad1.cartservice.mapper.CartMapper;
+import br.com.solutis.squad1.cartservice.model.build.CartBuilder;
 import br.com.solutis.squad1.cartservice.model.entity.Cart;
 import br.com.solutis.squad1.cartservice.model.repository.CartRepository;
 import br.com.solutis.squad1.cartservice.model.repository.CartRepositoryCustom;
@@ -107,6 +108,8 @@ public class CartServiceTest {
         assertThrows(EntityNotFoundException.class, () -> cartService.findById(id));
     }
 
+
+
     @Test
     @DisplayName("Should delete cart")
     void delete_WithValidId_ShouldDeleteCart() {
@@ -132,15 +135,17 @@ public class CartServiceTest {
     }
 
     private Cart createCart() {
-        return new Cart(
-                1L,
-                1L,
-                new HashSet<>(),
-                false,
-                LocalDateTime.now(),
-                LocalDateTime.now(),
-                LocalDateTime.now()
-        );
+        CartBuilder build = new CartBuilder();
+
+        return build
+                .setId(1L)
+                .setUserId(1L)
+                .setItems(new HashSet<>())
+                .setDeleted(false)
+                .setCreatedAt(LocalDateTime.now())
+                .setUpdatedAt(null)
+                .setDeletedAt(null)
+                .build();
     }
 
     private ProductResponseDto createProductResponseDto() {
