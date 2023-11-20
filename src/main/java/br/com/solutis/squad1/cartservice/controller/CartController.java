@@ -26,6 +26,7 @@ public class CartController {
      * @return Page<CartResponseDto>
      */
     @GetMapping
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public Page<CartResponseDto> findAll(
             Pageable pageable
     ) {
@@ -39,6 +40,7 @@ public class CartController {
      * @return CartResponseDto
      */
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('cart:read')")
     public CartResponseDto finById(
             @PathVariable Long id
     ) {
@@ -52,6 +54,7 @@ public class CartController {
      * @return Page<ProductDetailsDto>
      */
     @GetMapping("/user/{userId}")
+    @PreAuthorize("hasAuthority('cart:read')")
     public Page<ProductDetailsDto> findProductsByUserAndNotDeleted(
             @PathVariable Long userId
     ) {

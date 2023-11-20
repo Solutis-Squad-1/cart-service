@@ -17,7 +17,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 public class LoggerAspect {
     private static final Logger LOGGER = LoggerFactory.getLogger(LoggerAspect.class);
 
-    @Pointcut("execution(public * br.com.solutis.squad1.catalogservice.*.*.*(..))")
+    @Pointcut("execution(public * br.com.solutis.squad1.cartservice.*.*.*(..))")
     public void methodsPointCut() {
     }
 
