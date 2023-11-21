@@ -2,6 +2,7 @@ package br.com.solutis.squad1.cartservice.controller;
 
 import br.com.solutis.squad1.cartservice.dto.orderItem.OrderItemResponseDto;
 import br.com.solutis.squad1.cartservice.service.OrderItemService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,6 +23,7 @@ public class OrderItemController {
      * @param pageable
      * @return Page<OrderItemResponseDto>
      */
+    @Operation(summary = "Find all orderItems")
     @GetMapping
     public Page<OrderItemResponseDto> findAll(
             Pageable pageable
@@ -35,6 +37,7 @@ public class OrderItemController {
      * @param id
      * @return OrderItemResponseDto
      */
+    @Operation(summary = "Find orderItem by id")
     @GetMapping("/{id}")
     public OrderItemResponseDto finById(
             @PathVariable Long id

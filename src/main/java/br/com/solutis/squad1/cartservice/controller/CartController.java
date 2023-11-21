@@ -5,6 +5,7 @@ import br.com.solutis.squad1.cartservice.dto.cart.CartPutDto;
 import br.com.solutis.squad1.cartservice.dto.cart.CartResponseDto;
 import br.com.solutis.squad1.cartservice.dto.product.ProductDetailsDto;
 import br.com.solutis.squad1.cartservice.service.CartService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,6 +26,7 @@ public class CartController {
      * @param pageable
      * @return Page<CartResponseDto>
      */
+    @Operation(summary = "Find all carts")
     @GetMapping
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public Page<CartResponseDto> findAll(
@@ -39,6 +41,7 @@ public class CartController {
      * @param id
      * @return CartResponseDto
      */
+    @Operation(summary = "Find cart by id")
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('cart:read')")
     public CartResponseDto finById(
@@ -53,6 +56,7 @@ public class CartController {
      * @param userId
      * @return Page<ProductDetailsDto>
      */
+    @Operation
     @GetMapping("/user/{userId}")
     @PreAuthorize("hasAuthority('cart:read')")
     public Page<ProductDetailsDto> findProductsByUserAndNotDeleted(
@@ -67,6 +71,7 @@ public class CartController {
      * @param cartPostDto
      * @return CartResponseDto
      */
+    @Operation(summary = "Create a cart")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @PreAuthorize("hasAuthority('cart:create')")
@@ -83,6 +88,7 @@ public class CartController {
      * @param cartPutDto
      * @return CartResponseDto
      */
+    @Operation(summary = "Update a cart")
     @PutMapping("/{id}")
     @PreAuthorize("hasAuthority('cart:update:status')")
     public CartResponseDto update(
@@ -97,6 +103,7 @@ public class CartController {
      *
      * @param id
      */
+    @Operation(summary = "Delete a cart")
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PreAuthorize("hasAuthority('cart:delete')")
