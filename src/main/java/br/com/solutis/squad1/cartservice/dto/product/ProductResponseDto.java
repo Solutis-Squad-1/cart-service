@@ -26,4 +26,5 @@ public record ProductResponseDto(
         @NotNull
         ImageResponseDto image
 ) {
+
 }

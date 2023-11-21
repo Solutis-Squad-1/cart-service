@@ -1,9 +1,9 @@
 package br.com.solutis.squad1.cartservice.model.build;
 
+import br.com.solutis.squad1.cartservice.dto.cart.CartPostDto;
 import br.com.solutis.squad1.cartservice.dto.cart.CartResponseDto;
 import br.com.solutis.squad1.cartservice.model.entity.Cart;
 import br.com.solutis.squad1.cartservice.model.entity.OrderItem;
-import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -67,5 +67,9 @@ public class CartBuilder {
 
     public CartResponseDto buildResponseDto() {
         return new CartResponseDto(id, userId, productsIds);
+    }
+
+    public CartPostDto buildPostDto() {
+        return new CartPostDto(userId, productsIds);
     }
 }

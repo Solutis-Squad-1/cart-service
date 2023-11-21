@@ -2,9 +2,6 @@ package br.com.solutis.squad1.cartservice.service;
 
 
 import br.com.solutis.squad1.cartservice.dto.cart.CartResponseDto;
-import br.com.solutis.squad1.cartservice.dto.product.CategoryResponseDto;
-import br.com.solutis.squad1.cartservice.dto.product.ImageResponseDto;
-import br.com.solutis.squad1.cartservice.dto.product.ProductResponseDto;
 import br.com.solutis.squad1.cartservice.mapper.CartMapper;
 import br.com.solutis.squad1.cartservice.model.build.CartBuilder;
 import br.com.solutis.squad1.cartservice.model.entity.Cart;
@@ -23,7 +20,6 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -108,8 +104,6 @@ public class CartServiceTest {
         assertThrows(EntityNotFoundException.class, () -> cartService.findById(id));
     }
 
-
-
     @Test
     @DisplayName("Should delete cart")
     void delete_WithValidId_ShouldDeleteCart() {
@@ -146,16 +140,5 @@ public class CartServiceTest {
                 .setUpdatedAt(null)
                 .setDeletedAt(null)
                 .build();
-    }
-
-    private ProductResponseDto createProductResponseDto() {
-        return new ProductResponseDto(
-                1L,
-                "Product Name",
-                "Product Description",
-                BigDecimal.valueOf(100.0),
-                1L,
-                Collections.singletonList(new CategoryResponseDto(1L, "product")), // categories
-                new ImageResponseDto(1L, "name", "originalName", "content", 1L, "url"));
     }
 }
